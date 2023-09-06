@@ -1,18 +1,30 @@
 package com.example.playground.user;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
-public class User {
+@Entity
+@Table (name = "RegisteredUsers")
+public class RegisteredUser {
+    @Id
+    @SequenceGenerator(name = "registeredUser_sequence",
+    sequenceName = "registeredUser_sequence",
+    allocationSize = 1)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "registeredUser_sequence"
+    )
     private Long id;
     private String name;
     private String email;
     private int age;
     private LocalDate dob;
 
-    public User() {
+    public RegisteredUser() {
     }
 
-    public User(Long id, String name, String email, int age, LocalDate dob) {
+    public RegisteredUser(Long id, String name, String email, int age, LocalDate dob) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -20,7 +32,7 @@ public class User {
         this.dob = dob;
     }
 
-    public User(String name, String email, int age, LocalDate dob) {
+    public RegisteredUser(String name, String email, int age, LocalDate dob) {
         this.name = name;
         this.email = email;
         this.age = age;
